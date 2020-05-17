@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Chart</title>
+</head>
+
+<body>
+    <!-- 一、静态 -->
+    <svg height="300" width="500">
+        <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="0" refY="4" markerWidth="10" markerHeight="10" orient="auto">
+                <path d="M 0,0 L 0,8 L9,4 z" fill="#ccc" />
+            </marker>
+        </defs>
+        <!-- 横向网格 -->
+        <g>
+            <line x1="50" y1="50" x2="450" y2="50" stroke="#ccc" stroke-width="0.5" />
+            <line x1="50" y1="100" x2="450" y2="100" stroke="#ccc" stroke-width="0.5" />
+            <line x1="50" y1="150" x2="450" y2="150" stroke="#ccc" stroke-width="0.5" />
+            <line x1="50" y1="200" x2="450" y2="200" stroke="#ccc" stroke-width="0.5" />
+        </g>
+        <!-- 柱形图 -->
+        <g transform="translate(-30, 0)">
+            <rect x="100" y="250" width="40" height="40" fill="#1B63DA" transform="rotate(180, 120, 250)" />
+            <rect x="180" y="250" width="40" height="80" fill="#1B63DA" transform="rotate(180, 200, 250)" />
+            <rect x="260" y="250" width="40" height="100" fill="#1B63DA" transform="rotate(180, 280, 250)" />
+            <rect x="340" y="250" width="40" height="60" fill="#1B63DA" transform="rotate(180, 360, 250)" />
+            <rect x="420" y="250" width="40" height="120" fill="#1B63DA" transform="rotate(180, 440, 250)" />
+        </g>
+        <!-- x label -->
+        <g transform="translate(-16, 0)">
+            <text x="100" y="270" fill="#ccc">A</text>
+            <text x="180" y="270" fill="#ccc">B</text>
+            <text x="260" y="270" fill="#ccc">C</text>
+            <text x="340" y="270" fill="#ccc">D</text>
+            <text x="420" y="270" fill="#ccc">E</text>
+        </g>
+        <!-- y label -->
+        <g transform="translate(-16, 0)">
+            <text x="30" y="50" fill="#ccc">200</text>
+            <text x="30" y="100" fill="#ccc">150</text>
+            <text x="30" y="150" fill="#ccc">100</text>
+            <text x="30" y="200" fill="#ccc">50</text>
+            <text x="30" y="250" fill="#ccc">0</text>
+        </g>
+
+        <!-- 坐标轴 -->
+        <g>
+            <line x1="50" y1="250" x2="450" y2="250" stroke="#ccc" stroke-width="1" marker-end="url(#arrow)" />
+            <line x1="50" y1="250" x2="50" y2="30" stroke="#ccc" stroke-width="1" marker-end="url(#arrow)" />
+        </g>
+
+    </svg>
+
+
+    <!-- 二、js动态绘制 -->
+    <svg id="chart">
+
+    </svg>
+    <script src="./index.js"></script>
+    <script>
+        const data = [
+            { type: 'A', value: 154 },
+            { type: 'B', value: 65 },
+            { type: 'C', value: 140 },
+            { type: 'D', value: 30 },
+            { type: 'E', value: 200 },
+            { type: 'F', value: 30 },
+        ]
+        const chart = new BarChart({
+            container: 'chart',
+            width: 600,
+            height: 500,
+            data,
+        })
+
+
+        chart.draw()
+
+    </script>
+
+</body>
+
+</html>
